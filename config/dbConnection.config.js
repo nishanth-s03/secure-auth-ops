@@ -10,7 +10,7 @@ const connectDB = async () => {
       const dbName = mongoose.connection.name;
       const hostName = mongoose.connection.host;
 
-      console.log(`Connected To\n| DB: ${dbName} | Host: ${hostName}`);
+      console.log(`🗄️  Connected To\n| DB: ${dbName} | Host: ${hostName}`);
     });
   } catch (error) {
     console.log(`Error Occured: ${error.messge}`);

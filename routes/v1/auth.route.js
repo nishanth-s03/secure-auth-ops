@@ -3,6 +3,7 @@ import {
   getUserDetails,
   loginUser,
   registerInfo,
+  userLogout,
 } from "../../controllers/user.controller.js";
 import { verifyToken } from "../../middlewares/auth.midlleware.js";
 
@@ -16,5 +17,8 @@ router.post("/login-user", loginUser);
 
 //Get User
 router.get("/get-user", verifyToken, getUserDetails);
+
+//Logout User
+router.post("/logout-user",verifyToken,userLogout);
 
 export default router;

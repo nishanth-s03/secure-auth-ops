@@ -23,7 +23,7 @@ const verifyToken = (req, res, next) => {
     if (err)
       return res
         .status(403)
-        .json({ message: `Forbidden User ${token} ${err.me}` });
+        .json({ message: `Forbidden User ${token} ${err.message}` });
 
     req.user = user;
     next();

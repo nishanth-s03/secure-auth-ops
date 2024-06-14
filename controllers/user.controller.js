@@ -117,7 +117,10 @@ const loginUser = async (req, res) => {
     const { password: pass, ...rest } = user._doc;
 
     return res
-      .cookie("access_token", token, { httpOnly: true })
+      .cookie("access_token", token, { 
+        httpOnly: true,
+        maxAge: 3600000,
+      })
       .status(200)
       .json(rest);
   } catch (error) {
@@ -136,4 +139,20 @@ const getUserDetails = async (req, res) => {
   }
 };
 
-export { registerInfo, loginUser, getUserDetails };
+//Logout 
+const userLogout = async (req,res) => {
+  try {
+    // Clear the access_token cookie by setting its expiry to a past date
+    res.cookie("access_token", "", {
+      httpOnly: true,
+      expires: new Date(0) // Set the expiry date to a past date
+  });
+
+  return res.status(200).json({ message: 'Logout successful' });
+
+  } catch (error) {
+    return res.status(500).json({ message: `Server Error ${error.message}` });
+  }
+};
+
+export { registerInfo, loginUser, getUserDetails, userLogout };
